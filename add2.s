@@ -3,7 +3,7 @@
 
 .data
 
-format: .asciz  "sum is %d\n"
+format: .asciz  "sum is %d = %d + %d\n"
 
 .text
 .global main
