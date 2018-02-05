@@ -4,9 +4,8 @@
 
 .data
 
-buffer: .byte  0
-msg:    .ascii "Hello ARM!\n"
-        .byte  0
+buffer: .long  0
+msg:    .asciz "Hello ARM!\n"
 
 .text
 .global _start
@@ -27,8 +26,7 @@ loop:   ldrb    r0, [r1]
         bl      putc
         add     r1, r1, #1
         b       loop
-done:   pop     {r0, r1, lr}
-        mov     pc, lr
+done:   pop     {r0, r1, pc}
 
 putc:   push    {r0, r1, r2, r7, lr}
         ldr     r1, =buffer
@@ -37,6 +35,5 @@ putc:   push    {r0, r1, r2, r7, lr}
         mov     r2, #1     @ count => 1
         mov     r7, #4     @ write is syscall #4
         swi     #0
-        pop     {r0, r1, r2, r7, lr}
-        mov     pc, lr
+        pop     {r0, r1, r2, r7, pc}
 

@@ -3,9 +3,7 @@
 
 .data
 
-buffer:     .byte   0
-msg:        .ascii  "Hello, ARM!\n"
-len = . - msg
+buffer:     .long   0
 
 
 .text
