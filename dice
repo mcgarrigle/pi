@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+#
+# get wordlist by:
+#
+# curl -s http://world.std.com/%7Ereinhold/diceware.wordlist.asc | gpg 2>/dev/null > diceware.wordlist.txt
+#
+
+def roll
+  5.times.map { (rand(6)+1).to_s }.join
+end
+
+hash = File.readlines("diceware.wordlist.txt").map {|s| s.split }.to_h
+
+phrase = 4.times.map { hash[roll] }.join(' ')
+
+puts phrase
